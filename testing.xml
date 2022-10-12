@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Week2TestSuite">
+
+    <test name="FirstScript" >
+        <classes>
+            <class name="FirstScript" />
+        </classes>
+    </test>
+
+    <test name="Task1Tests">
+        <packages>
+            <package name="task1" />
+        </packages>
+    </test>
+</suite>
