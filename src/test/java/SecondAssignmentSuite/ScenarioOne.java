@@ -7,9 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 import java.util.List;
@@ -18,14 +16,15 @@ public class ScenarioOne {
     public String testURL ="https://www.saucedemo.com/";
     public WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     public void initialSetup(){
         System.setProperty("webdriver.chrome.driver","C:\\Users\\denizh\\Documents\\TestEnv\\chromedriver.exe");
         driver =  new ChromeDriver();
         driver.get(testURL);
     }
 
-    @AfterTest
+
+    @AfterMethod
     public void afterRun(){
         driver.quit();
     }
@@ -51,9 +50,9 @@ public class ScenarioOne {
         }
         //Logout
         driver.findElement(By.className("bm-burger-button")).click();
-        WebElement logout = new WebDriverWait(driver, Duration.ofSeconds(2)).until(driver -> driver.findElement(By.xpath("//*[@id=\"logout_sidebar_link\"]")));
-        Assert.assertTrue(logout.isDisplayed());
-        logout.click();
+        Assert.assertTrue(new WebDriverWait(driver, Duration.ofSeconds(2)).until(driver -> driver.findElement(By.xpath("//*[@id=\"logout_sidebar_link\"]")).isDisplayed()));
+        driver.findElement(By.xpath("//*[@id=\"logout_sidebar_link\"]")).click();
+
     }
 
     @Test
