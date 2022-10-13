@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="SecondAssignmentSuite">
-    <test name="ScenarioOne">
-        <packages>
-            <package name="SecondAssignmentSuite"/>
-        </packages>
+<suite name="Second Assignment Suite" parallel="tests">
+    <test name="ScenarioOne" >
+        <classes>
+            <class name="secondAssignmentSuite.ScenarioOne"/>
+        </classes>
+    </test>
+    <test name="LoginTest">
+        <classes>
+            <class name="secondAssignmentSuite.LoginTest"/>
+        </classes>
     </test>
 </suite>

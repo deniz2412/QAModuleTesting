@@ -1,4 +1,4 @@
-package SecondAssignmentSuite;
+package secondAssignmentSuite;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 import java.util.List;
@@ -35,6 +33,17 @@ public class LoginTest {
     public void loginWithValidCredentials(){
         logMeIn("standard_user","secret_sauce");
         Assert.assertTrue(new WebDriverWait(driver, Duration.ofSeconds(2)).until(driver -> driver.findElement(By.id("header_container"))).isDisplayed());
+    }
+    @Test
+    public void loginWithLockedUser(){
+        logMeIn("locked_out_user","secret_sauce");
+        Assert.assertTrue(new WebDriverWait(driver, Duration.ofSeconds(4)).until(driver -> driver.findElement(By.className("error-message-container"))).isDisplayed());
+    }
+
+    @Test
+    public void loginWithUnknownUser(){
+        logMeIn("user_not_on_list","secret_sauce");
+        Assert.assertTrue(new WebDriverWait(driver, Duration.ofSeconds(4)).until(driver -> driver.findElement(By.className("error-message-container"))).isDisplayed());
     }
 
     @Test
